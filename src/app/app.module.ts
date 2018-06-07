@@ -8,6 +8,8 @@ import { AboutComponent } from './about/about.component';
 import { BlogcreateComponent } from './blogcreate/blogcreate.component';
 import { BlogeditComponent } from './blogedit/blogedit.component';
 import { BlogviewComponent } from './blogview/blogview.component';
+import { BlogService } from './blog.service';
+import { BlogHttpService } from './blog-http.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { BlogviewComponent } from './blogview/blogview.component';
 
    ])
   ],
-  providers: [],
+  providers: [BlogService,BlogHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

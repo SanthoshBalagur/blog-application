@@ -1,59 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BlogService } from '../blog.service';
+import { BlogHttpService } from '../blog-http.service';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit ,OnDestroy {
 
-  //declare a dummy blog variable here 
-  public allBlogs = [
-    {
-      "blogid":"1",
-      "lastModified": "2017-10-20T12:20:47.854Z",
-      "created": "2017-10-20T12:20:47.854Z",
-      "tags":[],
-      "author":"Admin",
-      "category":"Comedy",
-      "isPublished":true,
-      "views":0,
-      "bodyHtml":"this is blog body",
-      "description":"this is blog 1 description",
-      "title":"This is blog 1"
-    },
-    {
-      "blogid":"2",
-      "lastModified": "2017-10-20T12:20:47.854Z",
-      "created": "2017-10-20T12:20:47.854Z",
-      "tags":[],
-      "author":"Admin",
-      "category":"Comedy",
-      "isPublished":true,
-      "views":0,
-      "bodyHtml":"this is blog body",
-      "description":"this is blog 2 description",
-      "title":"This is blog 2"
-    },
-    {
-      "blogid":"3",
-      "lastModified": "2017-10-20T12:20:47.854Z",
-      "created": "2017-10-20T12:20:47.854Z",
-      "tags":[],
-      "author":"Admin",
-      "category":"Comedy",
-      "isPublished":true,
-      "views":0,
-      "bodyHtml":"this is blog body",
-      "description":"this is blog 3 description",
-      "title":"This is blog 3"
-    },
-  ]
+ public allBlogs;
 
-  constructor() { }
+  constructor(public blogservice:BlogService,public blogHttpService:BlogHttpService) {
+    console.log("Constructor is called")
+   }
 
   ngOnInit() {
-    
+    console.log(" Home Component ngOninit is called")
+    this.allBlogs = this.blogHttpService.getAllBlogs();
+   
+    // this.allBlogs = this.blogservice.getAllBlogs()
+    // console.log(this.allBlogs);
+  }
+  ngOnDestroy() {
+    console.log("Destroy is called")
   }
 
 }
